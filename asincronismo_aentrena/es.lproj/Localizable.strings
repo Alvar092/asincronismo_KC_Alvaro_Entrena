@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  asincronismo_aentrena
+
+  Created by Álvaro Entrena Casas on 9/5/25.
+  
+*/
+"email" = "Correo Electronico";
+"password" = "Contraseña";
+"login" = "Entrar";

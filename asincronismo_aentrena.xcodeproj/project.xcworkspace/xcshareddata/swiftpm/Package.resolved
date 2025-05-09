@@ -1,0 +1,33 @@
+{
+  "originHash" : "9b25d3c097640f2a4bb59973efc489956d06e5bde1ffa014a922a8e09d8c9a0f",
+  "pins" : [
+    {
+      "identity" : "asinclibrary",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alvar092/AsincLibrary",
+      "state" : {
+        "branch" : "main",
+        "revision" : "6e398644e4e8682e27aff87e365d05e649367a38"
+      }
+    },
+    {
+      "identity" : "combinecocoa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CombineCommunity/CombineCocoa",
+      "state" : {
+        "revision" : "7300c75ff9e072aa7fd0fccefcc88f74aae9bf56",
+        "version" : "0.4.1"
+      }
+    },
+    {
+      "identity" : "keychainaccess",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kishikawakatsumi/KeychainAccess.git",
+      "state" : {
+        "revision" : "84e546727d66f1adc5439debad16270d0fdd04e7",
+        "version" : "4.2.2"
+      }
+    }
+  ],
+  "version" : 3
+}
