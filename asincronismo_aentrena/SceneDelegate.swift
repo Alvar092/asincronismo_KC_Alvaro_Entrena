@@ -38,9 +38,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                     print("Vamos a la home, a la lista de heroes")
                     DispatchQueue.main.async{
                         print("Home")
-                        nav = UINavigationController(rootViewController: HomeViewController(
-                            appState: self.appState
-                        )
+                        nav = UINavigationController(
+                            rootViewController: HerosTableViewController(
+                            appState: self.appState,
+                            viewModel: HerosViewModel()
+                            )
                         )
                         self.window?.rootViewController = nav
                         self.window!.makeKeyAndVisible()
