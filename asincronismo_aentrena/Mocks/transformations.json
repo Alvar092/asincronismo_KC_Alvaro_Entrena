@@ -1,0 +1,56 @@
+[
+    {
+        "photo": "https://areajugones.sport.es/wp-content/uploads/2021/05/ozarru.jpg.webp",
+        "hero": {
+            "id": "88960359-A208-41A9-AD47-ADA0B5433C83"
+        },
+        "id": "976D9377-148E-4A87-8A54-F5604BBB3D38",
+        "name": "1. Oozaru – Gran Mono",
+        "description": "Cómo todos los Saiyans con cola, Goku es capaz de convertirse en un mono gigante si mira fijamente a la luna llena. Así es como Goku cuando era un infante liberaba todo su potencial a cambio de perder todo el raciocinio y transformarse en una auténtica bestia. Es por ello que sus amigos optan por cortarle la cola para que no ocurran desgracias, ya que Goku mató a su propio abuelo adoptivo Son Gohan estando en este estado. Después de beber el Agua Ultra Divina, Goku liberó todo su potencial sin necesidad de volver a convertirse en Oozaru"
+    },
+    {
+        "photo": "https://cdn.alfabetajuega.com/alfabetajuega/2023/04/kaio-ken.jpeg?width=1200",
+        "hero": {
+            "id": "88960359-A208-41A9-AD47-ADA0B5433C83"
+        },
+        "id": "DB6A693D-E926-4CA5-B5A8-A2E304C3462B",
+        "name": "2. Kaio-Ken",
+        "description": "Cuando Goku crece empieza a tomar más disciplina ante las artes marciales, lo cual lo lleva a entrenar una técnica muy poderosa, el Kaio-Ken. Este poder le permite al usuario multiplicar su fuerza, velocidad y mejora considerablemente los sentidos. Goku la aprendió para hacerle frente a la llegada de los saiyanos Nappa y Vegeta. Su forma muestra la misma apariencia de Goku, pero con un aura energética de color rojo que enana alrededor de su cuerpo mientras el Kaio-Ken se mantiene activo."
+    },
+    {
+        "photo": "https://cdn.alfabetajuega.com/alfabetajuega/2023/04/super-saiyajin-1.1682165373.3554.jpg?width=1200",
+        "hero": {
+            "id": "88960359-A208-41A9-AD47-ADA0B5433C83"
+        },
+        "id": "63539428-7C98-49BC-82AB-4FEAAF62801D",
+        "name": "3.Super Saiyan",
+        "description": "Cuando Freezer alcanza su última forma y ha devastado todo a su paso, Goku se ve obligado a superarse así mismo, alcanzando el conocido Super Saiyan 1. Esta transformación hace que el cabello de Goku se torne de color rubio y se levante, mientras que sus ojos se vuelven azules y su aura amarilla. En este estado, la fuerza, velocidad, reacción y resistencia aumentan x50, además, el usuario se vuelve más agresivo porque el detonante es la ira. Por ejemplo, lo que hizo que Goku se convirtiera en Super Saiyan fue que Freezer eliminara a Krilin frente a él."
+    },
+    {
+        "photo": "https://cdn.alfabetajuega.com/alfabetajuega/2023/04/super-saiyan-2.1682118036.4601.jpg?width=1200",
+        "hero": {
+            "id": "88960359-A208-41A9-AD47-ADA0B5433C83"
+        },
+        "id": "96758C8A-34B1-41B4-BE1E-17432B2B856A",
+        "name": "4. Super Saiyan 2",
+        "description": "En la fase Super Saiyan 2 el cabello de Goku se eriza mucho más y su aura obtiene rayos azules, mientras que también hay un pequeño cambio en sus cejas, las cuales son un poco más delgadas y rectas de lo normal. Esta transformación obtiene el poder x2 de Super Saiyan 1."
+    },
+    {
+        "photo": "https://cdn.alfabetajuega.com/alfabetajuega/2023/04/super-saiyajin-god.jpg?width=1200",
+        "hero": {
+            "id": "88960359-A208-41A9-AD47-ADA0B5433C83"
+        },
+        "id": "27B961A5-10BD-43BC-846F-63DF688ED3D4",
+        "name": "5.Super Saiyan Dios",
+        "description": "Goku obtiene el poder de Yamoshi por medio de un ritual de seis Super Sayajin de corazón puro, siendo un poder conocido como Resplandor Carmesí de Dios. Con esta transformación, Goku puede sentir el ki de los Dioses, obtiene regeneración y se vuelve más fuerte que la gran mayoría de los villanos poderosos de Dragon Ball Z, e incluso puede llegar a superar el poder de Goku Black. Esta transformación le da a Goku una apariencia más similar a un humano promedio, ya que pierde masa muscular, su cabello se mantiene en el estilo clásico, pero de color carmesí, al igual que sus ojos."
+    },
+    {
+        "photo": "https://cdn.alfabetajuega.com/alfabetajuega/2023/04/super-saiyajin-god.jpg?width=1200",
+        "hero": {
+            "id": "88960359-A208-41A9-AD47-ADA0B5433C83"
+        },
+        "id": "72F1317E-AE11-43F7-8E7C-9B5111CAAFF1",
+        "name": "6.Super Saiyan Blue",
+        "description": "Al controlar la fase Saiyanjin más allá de Dios, Goku consigue convertirse en Super Saiyan Blue para enfrentarse a Freezer Dorado. "
+    }
+]

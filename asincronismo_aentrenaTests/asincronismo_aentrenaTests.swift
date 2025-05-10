@@ -23,6 +23,7 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testKeyChainLibrary() throws {
+        // Verifica el funcionamiento básico de la libreria keychain(leer,guardar y eliminar valores)
         let KC = KeychainManager.shared
         XCTAssertNotNil(KC)
         
@@ -37,6 +38,7 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testLoginFake() async throws {
+        // Simula un login/logout con un caso de uso falso, verificando persistencia del token en Keychain
         let KC = KeychainManager.shared
         XCTAssertNotNil(KC)
         
@@ -62,12 +64,13 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testLoginReal() async throws  {
+        // Simula un flujo de login realista con lógica asincrónica pero un repositorio falso.
         let CK = KeychainManager.shared
         XCTAssertNotNil(CK)
         //reset the token
         let _ = CK.setKC(key: ConstantsApp.CONST_TOKEN_ID_KEYCHAIN, value: "")
         
-        //Caso se uso con repo Fake
+        //Caso de uso con repo Fake
         let userCase = DefaultLoginUseCase(repo: LoginRepositoryFake())
         XCTAssertNotNil(userCase)
         
@@ -88,6 +91,7 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testLoginAutoLoginAsincrono()  throws  {
+        // Test asincrónico usando Combine para validar que el login automático cambia el estado correctamente.
         var suscriptor = Set<AnyCancellable>()
         let exp = self.expectation(description: "Login Auto ")
         
@@ -115,7 +119,7 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testUIErrorView() async throws  {
-
+        // Verifica que se puede inicializar una vista de error con un estado determinado.
         let appStateVM = AppState(loginUseCase: FakeLoginUseCase())
         XCTAssertNotNil(appStateVM)
 
@@ -126,6 +130,8 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testUILoginView()  throws  {
+        // Test de validación de estructura visual y lógica básica de activación del login.
+        
         XCTAssertNoThrow(LoginView())
         let view = LoginView()
         XCTAssertNotNil(view)
@@ -146,8 +152,8 @@ final class KCDragonBallProfTests: XCTestCase {
         
         
         //la vista esta generada
-       let View2 =  LoginViewController(appState: AppState(loginUseCase: FakeLoginUseCase()))
-       XCTAssertNotNil(View2)
+        let View2 =  LoginViewController(appState: AppState(loginUseCase: FakeLoginUseCase()))
+        XCTAssertNotNil(View2)
         XCTAssertNoThrow(View2.loadView()) //generamos la vista
         XCTAssertNotNil(View2.loginButton)
         XCTAssertNotNil(View2.emailTextfield)
@@ -163,14 +169,16 @@ final class KCDragonBallProfTests: XCTestCase {
         XCTAssertEqual(View2.emailTextfield?.text, "Hola")
     }
     
-    func testHeroiewViewModel() async throws  {
+    func testHerosViewModel() async throws  {
+        // Test de lógica del ViewModel para listar héroes desde datos falsos.
         let vm = HerosViewModel(useCase: FakeHeroUseCase())
         XCTAssertNotNil(vm)
         XCTAssertEqual(vm.heros.count, 2) //debe haber 2 heroes Fake mokeados
     }
     
     func testHerosUseCase() async throws  {
-       let caseUser = HeroUseCase(repo: HerosRepositoryFake())
+        // Verifica la conexión del caso de uso con el repositorio.
+        let caseUser = HeroUseCase(repo: HerosRepositoryFake())
         XCTAssertNotNil(caseUser)
         
         let data = await caseUser.getHeros(filter: "")
@@ -179,6 +187,7 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testHeros_Combine() async throws  {
+        // Test asincrónico del binding con Combine al cambiar datos en el ViewModel.
         var suscriptor = Set<AnyCancellable>()
         let exp = self.expectation(description: "Heros get")
         
@@ -205,6 +214,7 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testHeros_Data() async throws  {
+        //  Valida la capa de datos tanto con red mockeada como con repositorio falso.
         let network = NetworkHerosMock()
         XCTAssertNotNil(network)
         let repo = HerosRepository(network: network)
@@ -224,6 +234,7 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testHeros_Domain() async throws  {
+        // Valida la correcta creación de modelos del dominio con sus propiedades.
        //Models
         let model = HerosModel(id: UUID(), favorite: true, description: "des", photo: "url", name: "goku")
         XCTAssertNotNil(model)
@@ -236,11 +247,58 @@ final class KCDragonBallProfTests: XCTestCase {
     }
     
     func testHeros_Presentation() async throws  {
+        // Valida que la pantalla de lista de héroes se puede crear con sus dependencias.
         let viewModel = HerosViewModel(useCase: FakeHeroUseCase())
         XCTAssertNotNil(viewModel)
         
         let view =  await HerosTableViewController(appState: AppState(loginUseCase: FakeLoginUseCase()), viewModel: viewModel)
         XCTAssertNotNil(view)
         
+    }
+    
+    func testTransformations_Data() async throws  {
+        //  Valida la capa de datos tanto con red mockeada como con repositorio falso.
+        let network = NetworkTransformationsMock()
+        XCTAssertNotNil(network)
+        let repo = TransformationsRepository(network: network)
+        XCTAssertNotNil(repo)
+        
+        let repo2 = TransformationsRepositoryFake()
+        XCTAssertNotNil(repo2)
+        
+        let data = await repo.getTransformations(fitler: "88960359-A208-41A9-AD47-ADA0B5433C83")
+        XCTAssertNotNil(data)
+        XCTAssertEqual(data.count, 6)
+        
+        
+        let data2 = await repo2.getTransformations(fitler: "88960359-A208-41A9-AD47-ADA0B5433C83")
+        XCTAssertNotNil(data2)
+        XCTAssertEqual(data2.count, 6)
+    }
+    
+    func testTransformations_Domain() async throws {
+        // Valida la correcta creación del modelo de transformaciones del dominio con sus propiedades
+        let transformation = TransformationModel(
+            photo: "photo",
+            hero: HerosModel(id: UUID(), favorite: false, description: "Test Hero", photo: "hero_photo", name: "Goku"),
+            id: "id",
+            name: "name",
+            description: "description")
+        XCTAssertNotNil(transformation)
+        XCTAssertEqual(transformation.name, "name")
+        
+        let requestTransformation = TransformationsModelRequest(id: "88960359-A208-41A9-AD47-ADA0B5433C83")
+        XCTAssertNotNil(requestTransformation)
+        XCTAssertEqual(requestTransformation.id, "88960359-A208-41A9-AD47-ADA0B5433C83")
+    }
+    
+    func testTransformationsUseCase() async throws  {
+        // Verifica la conexión del caso de uso con el repositorio.
+        let caseUser = TransformationsUseCase(repo: TransformationsRepositoryFake())
+        XCTAssertNotNil(caseUser)
+        
+        let data = await caseUser.getTransformations(filter: "88960359-A208-41A9-AD47-ADA0B5433C83")
+        XCTAssertNotNil(data)
+        XCTAssertEqual(data.count, 6)
     }
 }

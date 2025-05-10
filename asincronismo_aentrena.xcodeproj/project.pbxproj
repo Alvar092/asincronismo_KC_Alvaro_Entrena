@@ -42,6 +42,14 @@
 		678204EC2DCE1B1E00C2FC98 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678204EB2DCE1B1E00C2FC98 /* UIImage+Extensions.swift */; };
 		678204EF2DCE1C9900C2FC98 /* HeroTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 678204EE2DCE1C9900C2FC98 /* HeroTableViewController.xib */; };
 		678204F02DCE1C9900C2FC98 /* HeroTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678204ED2DCE1C9900C2FC98 /* HeroTableViewController.swift */; };
+		67C681682DCF59FA003E4B0E /* TransformationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C681672DCF59FA003E4B0E /* TransformationsModel.swift */; };
+		67C6816A2DCF60A9003E4B0E /* TransformationsRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C681692DCF60A9003E4B0E /* TransformationsRepositoryProtocol.swift */; };
+		67C6816C2DCF60B6003E4B0E /* TransformationsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6816B2DCF60B6003E4B0E /* TransformationsRepository.swift */; };
+		67C6816E2DCF6159003E4B0E /* NetworkTransformations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6816D2DCF6159003E4B0E /* NetworkTransformations.swift */; };
+		67C681772DCFB332003E4B0E /* TransformationsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C681762DCFB332003E4B0E /* TransformationsUseCase.swift */; };
+		67C681812DCFBA92003E4B0E /* HeroDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C681802DCFBA92003E4B0E /* HeroDetailViewController.xib */; };
+		67C681822DCFBA92003E4B0E /* HeroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6817F2DCFBA92003E4B0E /* HeroDetailViewController.swift */; };
+		67C6818C2DCFCC82003E4B0E /* HeroDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6818B2DCFCC79003E4B0E /* HeroDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +101,14 @@
 		678204ED2DCE1C9900C2FC98 /* HeroTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTableViewController.swift; sourceTree = "<group>"; };
 		678204EE2DCE1C9900C2FC98 /* HeroTableViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroTableViewController.xib; sourceTree = "<group>"; };
 		678204F92DCE20FF00C2FC98 /* asincronismo_aentrenaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = asincronismo_aentrenaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		67C681672DCF59FA003E4B0E /* TransformationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationsModel.swift; sourceTree = "<group>"; };
+		67C681692DCF60A9003E4B0E /* TransformationsRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationsRepositoryProtocol.swift; sourceTree = "<group>"; };
+		67C6816B2DCF60B6003E4B0E /* TransformationsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationsRepository.swift; sourceTree = "<group>"; };
+		67C6816D2DCF6159003E4B0E /* NetworkTransformations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTransformations.swift; sourceTree = "<group>"; };
+		67C681762DCFB332003E4B0E /* TransformationsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationsUseCase.swift; sourceTree = "<group>"; };
+		67C6817F2DCFBA92003E4B0E /* HeroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
+		67C681802DCFBA92003E4B0E /* HeroDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroDetailViewController.xib; sourceTree = "<group>"; };
+		67C6818B2DCFCC79003E4B0E /* HeroDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -230,6 +246,7 @@
 		678204832DCCC26E00C2FC98 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				67C6817A2DCFB984003E4B0E /* Detail */,
 				678204822DCCC25700C2FC98 /* Error */,
 				678204812DCCC25300C2FC98 /* Home */,
 				678204802DCCC24F00C2FC98 /* Login */,
@@ -240,6 +257,7 @@
 		678204842DCCC28300C2FC98 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				67C6818B2DCFCC79003E4B0E /* HeroDetailViewModel.swift */,
 				678204E22DCE162900C2FC98 /* HerosViewModel.swift */,
 				678204922DCCC85300C2FC98 /* AppState.swift */,
 			);
@@ -251,6 +269,7 @@
 			children = (
 				678204962DCCC92000C2FC98 /* LoginRepositoryProtocol.swift */,
 				678204D92DCE0F3F00C2FC98 /* HerosRepositoryProtocol.swift */,
+				67C681692DCF60A9003E4B0E /* TransformationsRepositoryProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -267,6 +286,7 @@
 			children = (
 				678204942DCCC88400C2FC98 /* LoginUseCase.swift */,
 				678204E02DCE13EC00C2FC98 /* HerosUseCase.swift */,
+				67C681762DCFB332003E4B0E /* TransformationsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -300,6 +320,7 @@
 			children = (
 				678204A52DCCCB8800C2FC98 /* LoginRepository.swift */,
 				678204DE2DCE12A700C2FC98 /* HerosRepository.swift */,
+				67C6816B2DCF60B6003E4B0E /* TransformationsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -311,6 +332,7 @@
 				6782049D2DCCC9C400C2FC98 /* HTTPResponseCodes.swift */,
 				6782049B2DCCC9B700C2FC98 /* HTTPMethods.swift */,
 				678204992DCCC9AD00C2FC98 /* Endpoints.swift */,
+				67C6816D2DCF6159003E4B0E /* NetworkTransformations.swift */,
 			);
 			path = BaseNetwork;
 			sourceTree = "<group>";
@@ -319,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				678204D72DCE0EFE00C2FC98 /* HerosModel.swift */,
+				67C681672DCF59FA003E4B0E /* TransformationsModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -330,6 +353,15 @@
 				678204E82DCE1A0F00C2FC98 /* HeroTableViewCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		67C6817A2DCFB984003E4B0E /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				67C6817F2DCFBA92003E4B0E /* HeroDetailViewController.swift */,
+				67C681802DCFBA92003E4B0E /* HeroDetailViewController.xib */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +466,7 @@
 				678204792DCCBFBF00C2FC98 /* Assets.xcassets in Resources */,
 				678204D32DCE0A6A00C2FC98 /* Localizable.strings in Resources */,
 				6782047B2DCCBFBF00C2FC98 /* LaunchScreen.storyboard in Resources */,
+				67C681812DCFBA92003E4B0E /* HeroDetailViewController.xib in Resources */,
 				678204EF2DCE1C9900C2FC98 /* HeroTableViewController.xib in Resources */,
 				6782048F2DCCC32300C2FC98 /* LoginViewController.xib in Resources */,
 				678204D02DCE02B900C2FC98 /* ErrorViewController.xib in Resources */,
@@ -456,6 +489,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67C6816A2DCF60A9003E4B0E /* TransformationsRepositoryProtocol.swift in Sources */,
+				67C6818C2DCFCC82003E4B0E /* HeroDetailViewModel.swift in Sources */,
 				6782049E2DCCC9C700C2FC98 /* HTTPResponseCodes.swift in Sources */,
 				678204DF2DCE12A700C2FC98 /* HerosRepository.swift in Sources */,
 				678204EC2DCE1B1E00C2FC98 /* UIImage+Extensions.swift in Sources */,
@@ -470,8 +505,13 @@
 				678204912DCCC4C700C2FC98 /* LoginView.swift in Sources */,
 				678204F02DCE1C9900C2FC98 /* HeroTableViewController.swift in Sources */,
 				678204A22DCCC9DF00C2FC98 /* NetworkLogin.swift in Sources */,
+				67C681822DCFBA92003E4B0E /* HeroDetailViewController.swift in Sources */,
+				67C681682DCF59FA003E4B0E /* TransformationsModel.swift in Sources */,
+				67C6816C2DCF60B6003E4B0E /* TransformationsRepository.swift in Sources */,
+				67C6816E2DCF6159003E4B0E /* NetworkTransformations.swift in Sources */,
 				678204A02DCCC9D300C2FC98 /* NetworkHeros.swift in Sources */,
 				678204782DCCBFBF00C2FC98 /* ViewController.swift in Sources */,
+				67C681772DCFB332003E4B0E /* TransformationsUseCase.swift in Sources */,
 				678204CB2DCE02AA00C2FC98 /* HomeViewController.swift in Sources */,
 				678204AC2DCCF01E00C2FC98 /* AppConstants.swift in Sources */,
 				678204A62DCCCB8800C2FC98 /* LoginRepository.swift in Sources */,
