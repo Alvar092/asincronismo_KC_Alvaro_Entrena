@@ -38,7 +38,9 @@ class TransformationCardView: UIView {
         func configure(with transformation: TransformationModel) {
             transformationNameLabel.text = transformation.name
             // Aquí puedes cargar la imagen real desde URL si hace falta
-            transformationImageView.image = UIImage(named: transformation.photo)
+            if let url = URL(string: transformation.photo) {
+                transformationImageView.loadImageRemote(url: url)
+            }
         }
     
     

@@ -16,6 +16,7 @@ final class LoginViewController: UIViewController {
     var loginButton: UIButton!
     var emailTextfield: UITextField!
     var passwordTexfield: UITextField!
+    var errorLabel: UILabel!
     
     private var appState: AppState?
     
@@ -48,7 +49,7 @@ final class LoginViewController: UIViewController {
         view = loginView
     }
     
-    var suscriptions = Set<AnyCancellable>()
+    var subscriptions = Set<AnyCancellable>()
     
     private var password: String = ""
     private var user: String = ""
@@ -57,14 +58,14 @@ final class LoginViewController: UIViewController {
     // MARK: -  Private
     
     func bindUI() {
-        suscribeUserText()
-        suscribePassword()
-        suscribeButton()
+        subscribeUserText()
+        subscribePassword()
+        subscribeButton()
     }
     
     //Suscriptions
     
-    private func suscribeUserText() {
+    private func subscribeUserText() {
         self.emailTextfield.textPublisher
             .receive(on: DispatchQueue.main)
             .debounce(for: .seconds(0.8), scheduler: RunLoop.main)
@@ -74,10 +75,10 @@ final class LoginViewController: UIViewController {
                 self?.user = userText
                 self?.enableButtonIfNeeded(userText)
             }
-            .store(in: &suscriptions)
+            .store(in: &subscriptions)
     }
     
-    private func suscribePassword() {
+    private func subscribePassword() {
         self.passwordTexfield.textPublisher
             .receive(on: DispatchQueue.main)
             .debounce(for: .seconds(0.8), scheduler: RunLoop.main)
@@ -87,10 +88,10 @@ final class LoginViewController: UIViewController {
                     self?.password = password
                 }
             }
-            .store(in: &suscriptions)
+            .store(in: &subscriptions)
     }
     
-    private func suscribeButton() {
+    private func subscribeButton() {
         self.loginButton.tapPublisher
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
@@ -102,7 +103,7 @@ final class LoginViewController: UIViewController {
                     print("No hacer nada")
                 }
             }
-            .store(in: &suscriptions)
+            .store(in: &subscriptions)
     }
     
     // Validation

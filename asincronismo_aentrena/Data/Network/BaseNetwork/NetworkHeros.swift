@@ -25,14 +25,13 @@ final class NetworkHeros: NetworkHerosProtocol{
     
         //Token JWT (habría que extraer de aqui) a algo generico o interceptor
         let JwtToken =  KeychainManager.shared.getKC(key: ConstantsApp.CONST_TOKEN_ID_KEYCHAIN)
-        if let tokenJWT = JwtToken{
+        if let tokenJWT = JwtToken {
             request.addValue("Bearer \(tokenJWT)", forHTTPHeaderField: "Authorization") //Token
         }
         
         //Call to server
         
-        do{
-            
+        do {
             let (data, response) = try await URLSession.shared.data(for: request)
             
             if let resp = response  as? HTTPURLResponse {
@@ -44,7 +43,6 @@ final class NetworkHeros: NetworkHerosProtocol{
         }catch{
             
         }
-        
         return modelReturn
     }
 }

@@ -169,9 +169,10 @@ final class KCDragonBallProfTests: XCTestCase {
         XCTAssertEqual(View2.emailTextfield?.text, "Hola")
     }
     
-    func testHerosViewModel() async throws  {
+    func testHerosViewModel() async throws {
         // Test de lógica del ViewModel para listar héroes desde datos falsos.
         let vm = HerosViewModel(useCase: FakeHeroUseCase())
+        await vm.loadHeros()
         XCTAssertNotNil(vm)
         XCTAssertEqual(vm.heros.count, 2) //debe haber 2 heroes Fake mokeados
     }
@@ -279,11 +280,12 @@ final class KCDragonBallProfTests: XCTestCase {
     func testTransformations_Domain() async throws {
         // Valida la correcta creación del modelo de transformaciones del dominio con sus propiedades
         let transformation = TransformationModel(
-            photo: "photo",
-            hero: HerosModel(id: UUID(), favorite: false, description: "Test Hero", photo: "hero_photo", name: "Goku"),
-            id: "id",
             name: "name",
-            description: "description")
+            photo: "photo",
+            id: "id",
+            description: "description",
+            hero: HerosModel(id: UUID(), favorite: false, description: "Test Hero", photo: "hero_photo", name: "Goku")
+            )
         XCTAssertNotNil(transformation)
         XCTAssertEqual(transformation.name, "name")
         
@@ -301,4 +303,229 @@ final class KCDragonBallProfTests: XCTestCase {
         XCTAssertNotNil(data)
         XCTAssertEqual(data.count, 6)
     }
-}
+    
+    func testHeroDetailViewModel() async throws  {
+        // Test de lógica del ViewModel para listar transformaciones desde datos falsos.
+        let detailvm = HeroDetailViewModel(hero: HerosModel(id: UUID(), favorite: false, description: "description", photo: "photo", name: "name"), useCase: FakeTransformationsUseCase())
+        await detailvm.loadTransformations()
+        XCTAssertNotNil(detailvm)
+        XCTAssertEqual(detailvm.transformations.count, 6) //debe haber 6 transformaciones Fake mokeados
+    }
+    
+    func testHeroDetail_Presentation() async throws  {
+        // Valida que la pantalla de detalles se puede crear con sus dependencias.
+        let hero = HerosModel(id: UUID(), favorite: false, description: "description", photo: "photo", name: "name")
+        let viewModel = HeroDetailViewModel(hero: hero, useCase: FakeTransformationsUseCase())
+        XCTAssertNotNil(viewModel)
+        
+        let view =  await HeroDetailViewController(appState: AppState(), hero: hero)
+        XCTAssertNotNil(view)
+    }
+    
+    func testHeroDetail_Combine() async throws {
+        // Suscripciones Combine
+        var subscriptions = Set<AnyCancellable>()
+        // Expectativa: esperar a que lleguen las transformaciones
+        let exp = expectation(description: "Transformations loaded")
+
+        // Heroe ficticio para pasar al ViewModel
+        let hero = HerosModel(
+            id: UUID(),
+            favorite: false,
+            description: "Descripción",
+            photo: "https://photo.com/img.jpg",
+            name: "Goku"
+        )
+
+        // ViewModel con fake use case
+        let viewModel = HeroDetailViewModel(hero: hero, useCase: FakeTransformationsUseCase())
+
+        // Esperamos a que se publiquen las transformaciones (ignoramos el valor inicial vacío)
+        viewModel.$transformations
+            .dropFirst()
+            .sink { data in
+                if data.count == 6 {
+                    exp.fulfill()
+                }
+            }
+            .store(in: &subscriptions)
+
+        await fulfillment(of: [exp], timeout: 5)
+    }
+    
+    func testHeroTransformations_Empty() async throws {
+        let useCase = FakeTransformationsUseCase(
+            repo: TransformationsRepositoryFake(network: NetworkTransformations()))
+        
+        let hero = HerosModel(
+            id: UUID(),
+            favorite: false,
+            description: "Sin transformaciones",
+            photo: nil,
+            name: "Mr. Satán"
+        )
+        
+        let viewModel = HeroDetailViewModel(hero: hero, useCase: useCase)
+
+            // Esperar publicación
+            try? await Task.sleep(nanoseconds: 1_000_000_000)
+
+            XCTAssertEqual(viewModel.transformations.count, 0)
+            XCTAssertEqual(viewModel.errorMesage, "Este hero no contiene transformaciones")
+    }
+    
+
+    func testHeroDetailViewControllerInitialization() {
+        // Creamos un héroe de prueba
+        let mockHero = HerosModel(
+            id: UUID(),
+            favorite: false,
+            description: "Genius billionaire",
+            photo: "http://example.com/ironman.jpg",
+            name: "Iron Man"
+        )
+        
+        // Creamos un mock del AppState
+        let mockAppState = AppState()
+        
+        // Creamos un mock del ViewModel
+        let mockViewModel = HeroDetailViewModel(hero: mockHero)
+        
+        // Inicializamos el ViewController
+        let viewController = HeroDetailViewController(
+            appState: mockAppState,
+            hero: mockHero,
+            viewModel: mockViewModel
+        )
+        
+        // Verificamos que se haya inicializado correctamente
+        XCTAssertNotNil(viewController)
+        viewController.loadViewIfNeeded()
+        viewController.configureHeroDetails()
+        XCTAssertEqual(viewController.heroNameLabel.text, mockHero.name)
+    }
+    
+    func testConfigureHeroDetails() {
+        // Creamos un héroe de prueba
+        let mockHero = HerosModel(
+            id: UUID(),
+            favorite: false,
+            description: "God of Thunder",
+            photo: "http://example.com/thor.jpg",
+            name: "Thor"
+        )
+        
+        // Inicializamos el ViewController
+        let viewController = HeroDetailViewController(
+            appState: nil,
+            hero: mockHero
+        )
+        
+        // Cargamos la vista
+        viewController.loadViewIfNeeded()
+        
+        // Ejecutamos el método que queremos probar
+        viewController.configureHeroDetails()
+        
+        // Verificamos que los outlets se configuraron correctamente
+        XCTAssertEqual(viewController.heroNameLabel.text, "Thor")
+        XCTAssertEqual(viewController.heroDescriptionLabel.text, "God of Thunder")
+        // No podemos probar directamente la carga de imagen aquí ya que es una operación asíncrona
+    }
+    
+    func testUpdateTransformationsUIWithEmptyList() {
+        // Creamos un héroe de prueba sin transformaciones
+        let mockHero = HerosModel(
+            id: UUID(),
+            favorite: false,
+            description: "Super soldier",
+            photo: "http://example.com/cap.jpg",
+            name: "Captain America"
+        )
+        
+        // Inicializamos el ViewController
+        let viewController = HeroDetailViewController(
+            appState: nil,
+            hero: mockHero
+        )
+        
+        // Cargamos la vista
+        viewController.loadViewIfNeeded()
+        
+        // Probamos el método con una lista vacía
+        viewController.updateTransformationsUI(with: [])
+        
+        // Verificamos que se muestre el mensaje "No transformations"
+        XCTAssertEqual(viewController.transformationsStackView.arrangedSubviews.count, 1)
+        if let label = viewController.transformationsStackView.arrangedSubviews.first as? UILabel {
+            XCTAssertEqual(label.text, NSLocalizedString("No transformations", comment: "El heroe no contiene transformaciones"))
+        } else {
+            XCTFail("Debería haber un label indicando que no hay transformaciones")
+        }
+    }
+
+    
+    func testHeroTableViewCellOutletsConnection() {
+        // Cargamos la celda directamente del nib
+        let bundle = Bundle(for: HeroTableViewCell.self)
+        let nib = UINib(nibName: "HeroTableViewCell", bundle: bundle)
+        
+        guard let cell = nib.instantiate(withOwner: nil, options: nil).first as? HeroTableViewCell else {
+            XCTFail("No se pudo crear la instancia de HeroTableViewCell desde el nib")
+            return
+        }
+        
+        // Aseguramos que los outlets están conectados
+        XCTAssertNotNil(cell.heroImageView, "heroImageView debería estar conectado")
+        XCTAssertNotNil(cell.heroTitleText, "heroTitleText debería estar conectado")
+    }
+
+    func testHeroTableViewCellConfiguration() {
+        // Cargamos la celda directamente del nib
+        let bundle = Bundle(for: HeroTableViewCell.self)
+        let nib = UINib(nibName: "HeroTableViewCell", bundle: bundle)
+        
+        guard let cell = nib.instantiate(withOwner: nil, options: nil).first as? HeroTableViewCell else {
+            XCTFail("No se pudo crear la instancia de HeroTableViewCell desde el nib")
+            return
+        }
+        
+        // Datos de prueba
+        let testTitle = "Iron Man"
+        let testImage = UIImage(systemName: "person.fill")
+        
+        // Configuramos la celda
+        cell.heroTitleText.text = testTitle
+        cell.heroImageView.image = testImage
+        
+        // Verificamos la configuración
+        XCTAssertEqual(cell.heroTitleText.text, testTitle)
+        XCTAssertEqual(cell.heroImageView.image, testImage)
+    }
+    
+    func testTransformationCardView_initWithFrame() {
+                // Given
+                let frame = CGRect(x: 0, y: 0, width: 300, height: 200)
+                
+                // When
+                let cardView = TransformationCardView(frame: frame)
+                
+                // Then
+                XCTAssertNotNil(cardView, "Card view should be successfully initialized with frame")
+                XCTAssertNotNil(cardView.transformationImageView, "Image view should be initialized")
+                XCTAssertNotNil(cardView.transformationNameLabel, "Name label should be initialized")
+            }
+    
+    func testCommonInitLoadsXibCorrectly() {
+           // Given
+           let cardView = TransformationCardView(frame: CGRect(x: 0, y: 0, width: 300, height: 200))
+           
+           // Then
+           XCTAssertNotNil(cardView.transformationImageView, "transformationImageView should be connected from the XIB")
+           XCTAssertNotNil(cardView.transformationNameLabel, "transformationNameLabel should be connected from the XIB")
+       }
+    
+    
+    }
+    
+

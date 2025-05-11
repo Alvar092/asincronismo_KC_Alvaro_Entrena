@@ -8,11 +8,11 @@
 import Foundation
 
 struct TransformationModel: Codable {
-    let photo: String
-    let hero: HerosModel
-    let id: String
     let name: String
+    let photo: String
+    let id: String
     let description: String
+    let hero: HerosModel
 }
 
 // Filtrar la solicitud a la API a traves del nombre

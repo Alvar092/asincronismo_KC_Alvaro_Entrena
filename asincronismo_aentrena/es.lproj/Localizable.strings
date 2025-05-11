@@ -9,3 +9,4 @@
 "password" = "Contraseña";
 "login" = "Entrar";
 "heros-title" = "Lista de heroes";
+"No transformations" = "Este heroe no contiene transformaciones";

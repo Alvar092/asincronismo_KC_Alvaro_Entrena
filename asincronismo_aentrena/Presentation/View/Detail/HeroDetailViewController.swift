@@ -13,17 +13,17 @@ class HeroDetailViewController: UIViewController {
 
     @IBOutlet weak var heroNameLabel: UILabel!
     @IBOutlet weak var heroImageView: UIImageView!
-    @IBOutlet weak var heroDescriptionTextView: UITextView!
+    @IBOutlet weak var heroDescriptionLabel: UILabel!
     @IBOutlet weak var transformationsStackView: UIStackView!
     
     var appState: AppState?
-    var suscriptions = Set<AnyCancellable>()
+    var subscriptions = Set<AnyCancellable>()
     private var viewModel: HeroDetailViewModel
     private var hero: HerosModel
     
-    init(appState: AppState?, hero: HerosModel) {
+    init(appState: AppState?, hero: HerosModel, viewModel: HeroDetailViewModel? = nil) {
         self.appState = appState
-        self.viewModel = HeroDetailViewModel(hero: hero)
+        self.viewModel = viewModel ?? HeroDetailViewModel(hero: hero)
         self.hero = hero
         super.init(nibName: "HeroDetailViewController", bundle: nil)
     }
@@ -41,7 +41,7 @@ class HeroDetailViewController: UIViewController {
     func configureHeroDetails() {
         heroNameLabel.text = hero.name
         heroImageView.loadImageRemote(url: URL(string: hero.photo ?? "")!)
-        heroDescriptionTextView.text = hero.description
+        heroDescriptionLabel.text = hero.description
     }
     
     func setUpBindings() {
@@ -50,7 +50,7 @@ class HeroDetailViewController: UIViewController {
             .sink { [weak self] transformations in
                 self?.updateTransformationsUI(with: transformations)
             }
-            .store(in: &suscriptions)
+            .store(in: &subscriptions)
     }
     
     func updateTransformationsUI(with transformations: [TransformationModel]) {
@@ -61,14 +61,18 @@ class HeroDetailViewController: UIViewController {
         if transformations.isEmpty {
             let label = UILabel()
             // LOCALIZAR ESTO
-            label.text = "Este heroe no contiene transformaciones"
+            label.text = NSLocalizedString("No transformations", comment: "El heroe no contiene transformaciones")
             label.textAlignment = .center
             transformationsStackView.addArrangedSubview(label)
-            return
         } else {
             for transformation in transformations {
                 let card = TransformationCardView()
                 card.configure(with: transformation)
+                card.translatesAutoresizingMaskIntoConstraints = false
+                NSLayoutConstraint.activate([
+                    card.widthAnchor.constraint(equalToConstant: 368),
+                    card.heightAnchor.constraint(equalToConstant: 140)
+                ])
                 transformationsStackView.addArrangedSubview(card)
             }
         }

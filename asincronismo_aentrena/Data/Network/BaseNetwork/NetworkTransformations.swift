@@ -34,12 +34,12 @@ final class NetworkTransformations: NetworkTransformationsProtocol {
             
             if let resp = response  as? HTTPURLResponse {
                 if resp.statusCode == HTTPResponseCodes.SUCCESS {
-                    modelReturn = try! JSONDecoder().decode([TransformationModel].self, from: data)
+                    modelReturn = try JSONDecoder().decode([TransformationModel].self, from: data)
                 }
             }
             
         }catch{
-            
+            print("Hay error")
         }
         
         return modelReturn
