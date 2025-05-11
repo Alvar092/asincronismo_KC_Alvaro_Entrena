@@ -30,4 +30,11 @@ final class HerosViewModel: ObservableObject {
             self.heros = data
         }
     }
+    
+    func heroWith(index: Int) -> HerosModel? {
+        guard index < heros.count else {
+            return nil
+        }
+        return heros[index]
+    }
 }

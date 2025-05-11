@@ -45,24 +45,24 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2ne-eP-wpS">
-                    <rect key="frame" x="12" y="667" width="369" height="128"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ne-eP-wpS">
+                    <rect key="frame" x="12" y="667" width="369" height="140"/>
                     <subviews>
                         <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="JQ3-ED-XZa">
-                            <rect key="frame" x="0.0" y="0.0" width="369" height="0.0"/>
+                            <rect key="frame" x="0.0" y="0.0" width="368" height="140"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="9Sd-U4-e6c">
-                                    <rect key="frame" x="0.0" y="0.0" width="369" height="0.0"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="368" height="120.33333333333333"/>
                                 </stackView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="9Sd-U4-e6c" secondAttribute="bottom" id="0n0-AD-wq6"/>
                                 <constraint firstItem="9Sd-U4-e6c" firstAttribute="top" secondItem="JQ3-ED-XZa" secondAttribute="top" id="L84-4v-aPl"/>
                                 <constraint firstItem="9Sd-U4-e6c" firstAttribute="height" secondItem="JQ3-ED-XZa" secondAttribute="height" multiplier="0.859375" id="ODk-Oh-FTA"/>
                                 <constraint firstItem="9Sd-U4-e6c" firstAttribute="leading" secondItem="JQ3-ED-XZa" secondAttribute="leading" id="RSk-GM-L6J"/>
-                                <constraint firstAttribute="width" constant="369" id="S80-hA-CpR"/>
+                                <constraint firstAttribute="width" constant="368" id="S80-hA-CpR"/>
                                 <constraint firstAttribute="trailing" secondItem="9Sd-U4-e6c" secondAttribute="trailing" id="eTw-cn-QEX"/>
+                                <constraint firstAttribute="height" constant="140" id="fDG-sj-4dg"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -82,6 +82,7 @@
             <constraints>
                 <constraint firstItem="7df-Kl-iba" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="2bJ-rb-pO2"/>
                 <constraint firstItem="2ne-eP-wpS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="12" id="9Kb-yy-o0s"/>
+                <constraint firstItem="2ne-eP-wpS" firstAttribute="top" secondItem="BeU-wB-PTd" secondAttribute="bottom" constant="63" id="BC1-U2-bvE"/>
                 <constraint firstAttribute="trailing" secondItem="2ne-eP-wpS" secondAttribute="trailing" constant="12" id="Mn3-a4-jK0"/>
                 <constraint firstItem="L1P-Rc-Nr8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="OL8-Fe-zvj"/>
                 <constraint firstItem="BeU-wB-PTd" firstAttribute="top" secondItem="L1P-Rc-Nr8" secondAttribute="bottom" constant="12" id="Td9-MA-nab"/>

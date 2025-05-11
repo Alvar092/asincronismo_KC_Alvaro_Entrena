@@ -57,6 +57,11 @@ final class LoginView: UIView {
         return textfield
     }()
     
+    // INCLUIR LABEL DE ERROR POR SI FALLA ALGO
+    let errorLabel = {
+        let label = UILabel()
+    }
+    
     let buttonLogin = {
         let button = UIButton(type: .system)
         button.setTitle(

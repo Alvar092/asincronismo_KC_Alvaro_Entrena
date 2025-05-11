@@ -63,6 +63,14 @@ class HerosTableViewController: UITableViewController {
         150
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let hero = vm.heroWith(index: indexPath.row) else {
+            return
+        }
+        let heroDetail = HeroDetailViewController(appState: appState, hero: hero)
+        navigationController?.pushViewController(heroDetail, animated: true)
+    }
+    
     @objc func closeSession(_ : UIBarButtonItem) {
         self.appState?.closeSessionUser()
     }

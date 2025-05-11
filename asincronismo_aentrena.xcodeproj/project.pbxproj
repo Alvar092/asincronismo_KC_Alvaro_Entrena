@@ -50,6 +50,8 @@
 		67C681812DCFBA92003E4B0E /* HeroDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C681802DCFBA92003E4B0E /* HeroDetailViewController.xib */; };
 		67C681822DCFBA92003E4B0E /* HeroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6817F2DCFBA92003E4B0E /* HeroDetailViewController.swift */; };
 		67C6818C2DCFCC82003E4B0E /* HeroDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C6818B2DCFCC79003E4B0E /* HeroDetailViewModel.swift */; };
+		67C681942DD009E4003E4B0E /* TransformationCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C681932DD009E4003E4B0E /* TransformationCardView.swift */; };
+		67C681962DD00A19003E4B0E /* TransformationCardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67C681952DD00A19003E4B0E /* TransformationCardView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		67C6817F2DCFBA92003E4B0E /* HeroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
 		67C681802DCFBA92003E4B0E /* HeroDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeroDetailViewController.xib; sourceTree = "<group>"; };
 		67C6818B2DCFCC79003E4B0E /* HeroDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewModel.swift; sourceTree = "<group>"; };
+		67C681932DD009E4003E4B0E /* TransformationCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformationCardView.swift; sourceTree = "<group>"; };
+		67C681952DD00A19003E4B0E /* TransformationCardView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransformationCardView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -358,10 +362,20 @@
 		67C6817A2DCFB984003E4B0E /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				67C6819B2DD01AA5003E4B0E /* CardViews */,
 				67C6817F2DCFBA92003E4B0E /* HeroDetailViewController.swift */,
 				67C681802DCFBA92003E4B0E /* HeroDetailViewController.xib */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		67C6819B2DD01AA5003E4B0E /* CardViews */ = {
+			isa = PBXGroup;
+			children = (
+				67C681932DD009E4003E4B0E /* TransformationCardView.swift */,
+				67C681952DD00A19003E4B0E /* TransformationCardView.xib */,
+			);
+			path = CardViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -466,6 +480,7 @@
 				678204792DCCBFBF00C2FC98 /* Assets.xcassets in Resources */,
 				678204D32DCE0A6A00C2FC98 /* Localizable.strings in Resources */,
 				6782047B2DCCBFBF00C2FC98 /* LaunchScreen.storyboard in Resources */,
+				67C681962DD00A19003E4B0E /* TransformationCardView.xib in Resources */,
 				67C681812DCFBA92003E4B0E /* HeroDetailViewController.xib in Resources */,
 				678204EF2DCE1C9900C2FC98 /* HeroTableViewController.xib in Resources */,
 				6782048F2DCCC32300C2FC98 /* LoginViewController.xib in Resources */,
@@ -509,6 +524,7 @@
 				67C681682DCF59FA003E4B0E /* TransformationsModel.swift in Sources */,
 				67C6816C2DCF60B6003E4B0E /* TransformationsRepository.swift in Sources */,
 				67C6816E2DCF6159003E4B0E /* NetworkTransformations.swift in Sources */,
+				67C681942DD009E4003E4B0E /* TransformationCardView.swift in Sources */,
 				678204A02DCCC9D300C2FC98 /* NetworkHeros.swift in Sources */,
 				678204782DCCBFBF00C2FC98 /* ViewController.swift in Sources */,
 				67C681772DCFB332003E4B0E /* TransformationsUseCase.swift in Sources */,
